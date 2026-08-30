@@ -3,6 +3,7 @@ type Props = {
   age: number;
 }
 
+// component
 const Hello = (props: Props) => {
   console.log(props)
   return (
@@ -12,7 +13,7 @@ const Hello = (props: Props) => {
   )
 }
 
-
+// app
 const App = () => {
   return (
     <div>
