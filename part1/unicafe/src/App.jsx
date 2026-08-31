@@ -27,6 +27,8 @@ const App = () => {
   const handleGood = () => setGood(good + 1);
   const handleNeutral = () => setNeutral(neutral + 1);
   const handleBad = () => setBad(bad + 1);
+  const average = () => (good - bad) / (good + neutral + bad) || 0;
+  const pctPositive = () => good / (good + neutral + bad) || 0;
 
   return (
     <div>
@@ -38,6 +40,8 @@ const App = () => {
       <Display text="good" value={good} />
       <Display text="neutral" value={neutral} />
       <Display text="bad" value={bad} />
+      <Display text="average" value={average()} />
+      <Display text="percent positive" value={pctPositive()} />
     </div>
   );
 };
