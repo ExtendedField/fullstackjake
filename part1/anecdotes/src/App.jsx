@@ -1,8 +1,18 @@
 import { useState } from "react";
 
+const Header = ({ text }) => (
+  <div>
+    <h1>{text}</h1>
+  </div>
+);
+
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const Votes = ({ votes }) => <div>has {votes[selected]} votes</div>;
+const Votes = ({ numVotes }) => {
+  return <div>has {numVotes} votes</div>;
+};
+
+const Anecdote = ({ anecdote }) => <div>{anecdote}</div>;
 
 const App = () => {
   const anecdotes = [
@@ -22,17 +32,25 @@ const App = () => {
   const handleRandomDote = () => {
     return setSelected(Math.round(Math.random() * (anecdotes.length - 1)));
   };
+
   const handleVote = () => {
     const newVotes = [...votes];
     newVotes[selected] += 1;
     return setVotes(newVotes);
   };
 
+  const getBestAnecdote = () => {
+    return anecdotes[votes.indexOf(Math.max(...votes))];
+  };
   return (
     <div>
-      <div>{anecdotes[selected]}</div>
+      <Header text="Anecdote of the day" />
+      <Anecdote anecdote={anecdotes[selected]} />
+      <Votes numVotes={votes[selected]} />
       <Button onClick={handleVote} text="vote" />
       <Button onClick={handleRandomDote} text="click from random anecdote" />
+      <Header text="Anecdote with the most votes" />
+      <Anecdote anecdote={getBestAnecdote()} />
     </div>
   );
 };
