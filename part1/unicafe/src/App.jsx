@@ -9,12 +9,29 @@ const Header = ({ text }) => (
   </div>
 );
 
-// abstract the props
+const Statistics = ({ good, neutral, bad }) => {
+  if (good == 0 && neutral == 0 && bad == 0) {
+    return <div>No Statistics Available</div>;
+  }
+  const average = () => (good - bad) / (good + neutral + bad) || 0;
+  const pctPositive = () => good / (good + neutral + bad) || 0;
+
+  return (
+    <div>
+      <Display text="good" value={good} />
+      <Display text="neutral" value={neutral} />
+      <Display text="bad" value={bad} />
+      <Display text="average" value={average()} />
+      <Display text="percent positive" value={pctPositive()} />
+    </div>
+  );
+};
+
 const Display = ({ text, value }) => {
   return (
-    <p>
+    <div>
       {text} {value}
-    </p>
+    </div>
   );
 };
 
@@ -27,8 +44,6 @@ const App = () => {
   const handleGood = () => setGood(good + 1);
   const handleNeutral = () => setNeutral(neutral + 1);
   const handleBad = () => setBad(bad + 1);
-  const average = () => (good - bad) / (good + neutral + bad) || 0;
-  const pctPositive = () => good / (good + neutral + bad) || 0;
 
   return (
     <div>
@@ -37,11 +52,7 @@ const App = () => {
       <Button onClick={handleNeutral} text="neutral" />
       <Button onClick={handleBad} text="bad" />
       <Header text="statistics" />
-      <Display text="good" value={good} />
-      <Display text="neutral" value={neutral} />
-      <Display text="bad" value={bad} />
-      <Display text="average" value={average()} />
-      <Display text="percent positive" value={pctPositive()} />
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
