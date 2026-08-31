@@ -13,25 +13,35 @@ const Statistics = ({ good, neutral, bad }) => {
   if (good == 0 && neutral == 0 && bad == 0) {
     return <div>No Statistics Available</div>;
   }
-  const average = () => (good - bad) / (good + neutral + bad) || 0;
-  const pctPositive = () => good / (good + neutral + bad) || 0;
+  const average = () => {
+    return ((good - bad) / (good + neutral + bad)).toFixed(1) || 0;
+  };
+  const pctPositive = () => {
+    const val = ((100 * good) / (good + neutral + bad)).toFixed(1) || "0";
+    return `${val} %`;
+  };
 
   return (
     <div>
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="neutral" value={neutral} />
-      <StatisticLine text="bad" value={bad} />
-      <StatisticLine text="average" value={average()} />
-      <StatisticLine text="percent positive" value={pctPositive()} />
+      <table>
+        <tbody>
+          <StatisticLine text="good" value={good} />
+          <StatisticLine text="neutral" value={neutral} />
+          <StatisticLine text="bad" value={bad} />
+          <StatisticLine text="average" value={average()} />
+          <StatisticLine text="percent positive" value={pctPositive()} />
+        </tbody>
+      </table>
     </div>
   );
 };
 
 const StatisticLine = ({ text, value }) => {
   return (
-    <div>
-      {text} {value}
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
