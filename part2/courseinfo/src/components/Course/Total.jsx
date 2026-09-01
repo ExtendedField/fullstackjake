@@ -1,9 +1,10 @@
 const Total = ({ parts }) => {
-  // TODO: refactor to make this work for list of abitrary length
   return (
     <p>
-      Number of exercises:{" "}
-      {parts[0].exercises + parts[1].exercises + parts[2].exercises}
+      <b>
+        Number of exercises:{" "}
+        {parts.map((part) => part.exercises).reduce((a, b) => a + b, 0)}
+      </b>
     </p>
   );
 };
