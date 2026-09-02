@@ -1,9 +1,9 @@
 import Person from "./Person";
 
-const PhonebookDisplay = ({ persons }) => {
+const PhonebookDisplay = ({ filtered }) => {
   return (
     <div>
-      {persons.map((person) => (
+      {filtered.map((person) => (
         <Person key={person.name} person={person} />
       ))}
     </div>

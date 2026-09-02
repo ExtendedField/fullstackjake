@@ -3,6 +3,8 @@ import FormField from "./FormField";
 
 const SubmissionForm = ({
   persons,
+  search,
+  setFiltered,
   newName,
   setNewName,
   newNumber,
@@ -16,7 +18,11 @@ const SubmissionForm = ({
       console.log(persons);
       setPersons([...persons]);
     } else {
-      setPersons([...persons, { name: newName, number: newNumber }]);
+      const newPhonebook = [...persons, { name: newName, number: newNumber }];
+      setPersons(newPhonebook);
+      setFiltered(
+        newPhonebook.filter((person) => person.name.includes(search)),
+      );
     }
   };
   const handleNameChange = (event) => {
