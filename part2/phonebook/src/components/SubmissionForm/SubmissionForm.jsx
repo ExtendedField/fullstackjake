@@ -1,6 +1,8 @@
 import Button from "./Button";
 import FormField from "./FormField";
 
+// I think the crux of my woes is that this feels to specific to be reusable
+// that feels antithetical to the React conceptual framework
 const SubmissionForm = ({
   persons,
   search,
