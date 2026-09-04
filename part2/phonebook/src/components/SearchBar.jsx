@@ -1,12 +1,7 @@
-const SearchBar = ({ search, setSearch, persons, setFiltered }) => {
+const SearchBar = ({ search, setSearch }) => {
   const handleSearch = (event) => {
     const searchValue = event.target.value;
-    const peopleToShow =
-      search.length === 0
-        ? [...persons]
-        : persons.filter((person) => person.name.includes(searchValue));
     setSearch(searchValue);
-    setFiltered(peopleToShow);
   };
 
   return (

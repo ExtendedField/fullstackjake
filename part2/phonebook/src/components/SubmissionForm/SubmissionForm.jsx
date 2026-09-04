@@ -1,12 +1,9 @@
 import Button from "./Button";
 import FormField from "./FormField";
 
-// I think the crux of my woes is that this feels to specific to be reusable
-// that feels antithetical to the React conceptual framework
 const SubmissionForm = ({
   persons,
   search,
-  setFiltered,
   newName,
   setNewName,
   newNumber,
@@ -22,9 +19,6 @@ const SubmissionForm = ({
     } else {
       const newPhonebook = [...persons, { name: newName, number: newNumber }];
       setPersons(newPhonebook);
-      setFiltered(
-        newPhonebook.filter((person) => person.name.includes(search)),
-      );
     }
   };
   const handleNameChange = (event) => {

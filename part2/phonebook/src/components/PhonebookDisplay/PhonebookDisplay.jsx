@@ -1,11 +1,13 @@
 import Person from "./Person";
 
-const PhonebookDisplay = ({ filtered }) => {
+const PhonebookDisplay = ({ search, persons }) => {
   return (
     <div>
-      {filtered.map((person) => (
-        <Person key={person.name} person={person} />
-      ))}
+      {persons
+        .filter((person) => person.name.includes(search))
+        .map((person) => (
+          <Person key={person.name} person={person} />
+        ))}
     </div>
   );
 };
